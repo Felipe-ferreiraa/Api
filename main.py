@@ -6,13 +6,12 @@ import re
 
 app = FastAPI()
 
-# Modelo de dados atualizado
 class User(BaseModel):
     nome: str
     cpf: str
     data_nascimento: date
 
-    # Validação simples para CPF
+    
     @classmethod
     def validar_cpf(cls, cpf):
         cpf = re.sub(r'\D', '', cpf)  # Remove caracteres não numéricos
@@ -31,7 +30,6 @@ def listar_usuarios():
 # Rota para adicionar um novo usuário
 @app.post("/usuarios", summary="Adicionar um novo usuário", response_description="O usuário foi adicionado com sucesso.")
 def adicionar_usuario(usuario: User):
-    # Validação de CPF (opcional, pode ser ajustada conforme regras)
     try:
         usuario.cpf = User.validar_cpf(usuario.cpf)
     except ValueError as e:
