@@ -46,8 +46,3 @@ def obter_usuario(usuario_id: int):
     if usuario_id >= len(usuarios) or usuario_id < 0:
         return {"message": "Usuário não encontrado"}, 404
     return usuarios[usuario_id]
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
